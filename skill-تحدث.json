@@ -1,0 +1,388 @@
+{
+  "intents": [
+    {
+      "intent": "استفسار",
+      "examples": [
+        {
+          "text": "عندك استفسار لخدمة معينه"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "التعرف",
+      "examples": [
+        {
+          "text": "لم يستطع الجهاز التعرف علي؟"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ترحيب",
+      "examples": [
+        {
+          "text": "hi"
+        },
+        {
+          "text": "السلام عليكم"
+        },
+        {
+          "text": "اهلا"
+        },
+        {
+          "text": "مرجبا"
+        },
+        {
+          "text": "هلا"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "تقييم",
+      "examples": [
+        {
+          "text": "الخدمة كانت"
+        },
+        {
+          "text": "اوكي"
+        },
+        {
+          "text": "تمام"
+        },
+        {
+          "text": "حسنا"
+        },
+        {
+          "text": "طيب"
+        },
+        {
+          "text": "يمكنك التواصل معنا على الرقم التالي9989"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "خدمة",
+      "examples": [
+        {
+          "text": "اريد خدمة"
+        },
+        {
+          "text": "مساعدة"
+        },
+        {
+          "text": "هل"
+        },
+        {
+          "text": "هل يوجد هن"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ردالتقييم",
+      "examples": [
+        {
+          "text": "جيدة"
+        },
+        {
+          "text": "ممتازة"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ردالتقييم2",
+      "examples": [
+        {
+          "text": "سيئة"
+        },
+        {
+          "text": "مقبولة"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "ترحيب",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مرحبا"
+              },
+              {
+                "text": "ياهلا"
+              },
+              {
+                "text": "وعليكم السلام"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1626096911358"
+      },
+      "conditions": "#ترحيب",
+      "dialog_node": "node_2_1626014629327",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "standard",
+      "title": "التعرف",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "يمكنك التواصل على الرقم التالي 9665044022"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_7_1626184199808"
+      },
+      "conditions": "#التعرف",
+      "dialog_node": "node_2_1627178066104",
+      "previous_sibling": "node_6_1627177813196"
+    },
+    {
+      "type": "standard",
+      "title": "خدمة",
+      "output": {
+        "generic": [
+          {
+            "title": "كيف ممكن اساعدك ؟",
+            "options": [
+              {
+                "label": "لم يستطع الجهاز التعرف علي؟",
+                "value": {
+                  "input": {
+                    "text": "لم يستطع الجهاز التعرف علي؟"
+                  }
+                }
+              },
+              {
+                "label": "عندك استفسار لخدمة معينه",
+                "value": {
+                  "input": {
+                    "text": "عندك استفسار لخدمة معينه"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#خدمة",
+      "dialog_node": "node_4_1626096911358",
+      "previous_sibling": "node_2_1626014629327"
+    },
+    {
+      "type": "standard",
+      "title": "رد التقييم",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "شكرا لك💕"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#ردالتقييم",
+      "dialog_node": "node_4_1627178597791",
+      "previous_sibling": "node_7_1626184199808"
+    },
+    {
+      "type": "standard",
+      "title": "ردالتقييم2",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "نعتذر منك 💔 نتمنى لك تجربة افضل "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#ردالتقييم2",
+      "dialog_node": "node_4_1627178872920",
+      "previous_sibling": "node_4_1627178597791"
+    },
+    {
+      "type": "standard",
+      "title": "استفسار",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "يمكنك كتابة ملاحظاتك هنا على الرقم التالي96650792362"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_7_1626184199808"
+      },
+      "conditions": "#استفسار",
+      "dialog_node": "node_6_1627177813196",
+      "previous_sibling": "node_4_1626096911358"
+    },
+    {
+      "type": "standard",
+      "title": "تقييم",
+      "output": {
+        "generic": [
+          {
+            "title": "كيف كانت الخدمة ؟",
+            "options": [
+              {
+                "label": "ممتازة ",
+                "value": {
+                  "input": {
+                    "text": "ممتازة"
+                  }
+                }
+              },
+              {
+                "label": "جيدة",
+                "value": {
+                  "input": {
+                    "text": "جيدة"
+                  }
+                }
+              },
+              {
+                "label": "مقبولة ",
+                "value": {
+                  "input": {
+                    "text": "مقبولة"
+                  }
+                }
+              },
+              {
+                "label": "سيئة",
+                "value": {
+                  "input": {
+                    "text": "سيئة"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#تقييم",
+      "dialog_node": "node_7_1626184199808",
+      "previous_sibling": "node_2_1627178066104"
+    },
+    {
+      "type": "standard",
+      "title": "اي شي اخر ",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_9_1626551798209",
+      "previous_sibling": "node_4_1627178872920"
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اهلا"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "شكرا لك💕"
+    }
+  ],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "تحدث",
+  "language": "ar",
+  "description": ""
+}
